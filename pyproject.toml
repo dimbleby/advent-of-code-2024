@@ -1,0 +1,68 @@
+[project]
+name = "advent"
+version = "0.1.0"
+description = "Advent of code 2024"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+advent = "advent.main:main"
+
+[dependency-groups]
+dev = [
+  "ruff>=0.8",
+  "mypy>=1.13",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+files = "."
+strict = true
+enable_error_code = [
+  "explicit-override",
+  "ignore-without-code",
+  "redundant-expr",
+  "truthy-bool",
+  "truthy-iterable",
+  "unused-awaitable",
+]
+warn_unreachable = true
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "C90",    # mccabe
+  "COM",    # flake8-commas
+  "CPY",    # flake8-copyright
+  "D",      # pydocstyle
+  "DOC",    # pydoclint
+  "ERA",    # eradicate
+  "PD",     # pandas-vet
+  "PLR",    # pylint-refactor
+  "T20",    # flake8-print
+  "ANN401", # any-type
+  "E203",   # whitespace before ':'
+  "S101",   # assert-used
+]
+extend-safe-fixes = [
+  "TC", # flake8-type-checking
+]
+unfixable = [
+  "F841", # unused-variable
+]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.flake8-type-checking]
+strict = true
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
