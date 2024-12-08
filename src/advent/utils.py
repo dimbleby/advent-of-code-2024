@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 import importlib.resources
-from collections.abc import Hashable
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Generic, Protocol, Self, TypeVar, override
+from typing import TYPE_CHECKING, Protocol, Self, override
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable, Iterator
+    from collections.abc import Hashable, Iterable, Iterator
     from importlib.resources.abc import Traversable
     from typing import Self
 
@@ -21,10 +20,7 @@ class SupportsChunking(Protocol):
     def __len__(self) -> int: ...
 
 
-Chunkable = TypeVar("Chunkable", bound=SupportsChunking)
-
-
-def chunks(seq: Chunkable, n: int) -> Iterator[Chunkable]:
+def chunks[T: SupportsChunking](seq: T, n: int) -> Iterator[T]:
     for i in range(0, len(seq), n):
         yield seq[i : i + n]
 
@@ -126,11 +122,8 @@ class Vec3:
         return self.x * other.x + self.y * other.y + self.z * other.z
 
 
-T = TypeVar("T", bound=Hashable)
-
-
 @dataclass
-class UnionFind(Generic[T]):
+class UnionFind[T: Hashable]:
     parents: dict[T, T]
     ranks: dict[T, int]
 
