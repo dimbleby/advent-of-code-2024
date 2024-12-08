@@ -3,7 +3,7 @@ from __future__ import annotations
 import importlib.resources
 from collections.abc import Hashable
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Generic, Protocol, Self, TypeVar
+from typing import TYPE_CHECKING, Generic, Protocol, Self, TypeVar, override
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
@@ -57,6 +57,17 @@ class Vec2:
         self.x -= other.x
         self.y -= other.y
         return self
+
+    @override
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Vec2):
+            return False
+
+        return self.x == other.x and self.y == other.y
+
+    @override
+    def __hash__(self) -> int:
+        return hash((self.x, self.y))
 
 
 @dataclass

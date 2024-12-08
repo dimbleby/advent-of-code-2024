@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from itertools import starmap
+
 from advent.utils import data_dir
 
 
@@ -57,7 +59,7 @@ def solve() -> None:
         operands = [int(n) for n in parts[1].split()]
         equations.append((target, operands))
 
-    part_one = sum(satisfy(*equation) for equation in equations)
+    part_one = sum(starmap(satisfy, equations))
     print(f"Part one: {part_one}")
 
     part_two = sum(satisfy(*equation, part_two=True) for equation in equations)
