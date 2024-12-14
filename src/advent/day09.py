@@ -116,7 +116,7 @@ def solve_part_two(block_ranges: list[BlockRange]) -> int:
 
 def solve() -> None:
     puzzle = data_dir() / "day09.txt"
-    data = puzzle.read_text(encoding="utf-8").strip()
+    data = puzzle.read_text().strip()
 
     block_ranges = parse_data(data)
     part_one = solve_part_one(block_ranges)

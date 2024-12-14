@@ -5,7 +5,7 @@ from advent.utils import data_dir
 
 def solve() -> None:
     puzzle = data_dir() / "day10.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
 
     grid = [[int(n) for n in line] for line in data.splitlines()]
     rows = len(grid)

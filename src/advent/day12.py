@@ -12,7 +12,7 @@ WEST = -1j
 
 def solve() -> None:
     puzzle = data_dir() / "day12.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
 
     grid = {
         r + c * 1j: char

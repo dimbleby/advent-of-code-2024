@@ -50,7 +50,7 @@ def satisfy(target: int, operands: list[int], *, part_two: bool = False) -> int:
 
 def solve() -> None:
     puzzle = data_dir() / "day07.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
 
     equations = []
     for line in data.splitlines():

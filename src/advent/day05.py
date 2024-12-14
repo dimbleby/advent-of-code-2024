@@ -63,7 +63,7 @@ def topological_sort(
 
 def solve() -> None:
     puzzle = data_dir() / "day05.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
     parts = [
         list(part)
         for key, part in itertools.groupby(data.splitlines(), key=bool)

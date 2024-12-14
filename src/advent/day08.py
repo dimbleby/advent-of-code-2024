@@ -42,7 +42,7 @@ def get_antinodes(
 
 def solve() -> None:
     puzzle = data_dir() / "day08.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
 
     antennae = defaultdict(list)
     for i, row in enumerate(data.splitlines()):

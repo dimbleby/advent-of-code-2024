@@ -49,7 +49,7 @@ class Grid:
 
 def solve() -> None:
     puzzle = data_dir() / "day06.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
     lines = data.splitlines()
     grid = Grid.from_lines(lines)
     guard = grid.find_guard()

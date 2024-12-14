@@ -30,7 +30,7 @@ def safe2(report: list[int]) -> bool:
 
 def solve() -> None:
     puzzle = data_dir() / "day02.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
 
     reports = [[int(n) for n in line.split()] for line in data.splitlines()]
 

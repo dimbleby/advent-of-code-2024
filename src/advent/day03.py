@@ -7,7 +7,7 @@ from advent.utils import data_dir
 
 def solve() -> None:
     puzzle = data_dir() / "day03.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
 
     pattern = re.compile(r"mul\((\d+),(\d+)\)")
     total = 0

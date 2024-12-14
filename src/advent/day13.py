@@ -26,7 +26,7 @@ def cost(a: int, b: int, c: int, d: int, x: int, y: int) -> int | None:
 
 def solve() -> None:
     puzzle = data_dir() / "day13.txt"
-    data = puzzle.read_text(encoding="utf-8").strip()
+    data = puzzle.read_text()
 
     puzzles = []
     parts = [

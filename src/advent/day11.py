@@ -25,7 +25,7 @@ def expand(blinks: int, stone: int) -> int:
 
 def solve() -> None:
     puzzle = data_dir() / "day11.txt"
-    data = puzzle.read_text(encoding="utf-8").strip()
+    data = puzzle.read_text().strip()
 
     stones = [int(n) for n in data.split()]
 
