@@ -15,7 +15,7 @@ def solve() -> None:
     data = puzzle.read_text()
 
     grid = {
-        r + c * 1j: char
+        complex(r, c): char
         for r, line in enumerate(data.splitlines())
         for c, char in enumerate(line)
     }
