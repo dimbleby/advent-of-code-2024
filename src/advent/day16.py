@@ -93,7 +93,7 @@ class Maze:
 
 def solve() -> None:
     puzzle = data_dir() / "day16.txt"
-    data = puzzle.read_text(encoding="utf-8")
+    data = puzzle.read_text()
     maze = Maze.from_string(data)
     best_cost, tile_count = maze.solve()
     print(f"Part one: {best_cost}")
