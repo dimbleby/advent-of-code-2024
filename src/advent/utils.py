@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import importlib.resources
+from collections import deque
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Protocol, Self, override
 
 if TYPE_CHECKING:
-    from collections.abc import Hashable, Iterable, Iterator
+    from collections.abc import Collection, Hashable, Iterable, Iterator, Mapping
     from importlib.resources.abc import Traversable
     from typing import Self
 
@@ -161,3 +162,29 @@ class UnionFind[T: Hashable]:
                 self.ranks[x] = xrank + 1
 
         return True
+
+
+def topological_sort[T](
+    dependencies: Mapping[T, list[T]], unordered: Collection[T]
+) -> list[T]:
+    order = []
+
+    in_degrees = dict.fromkeys(unordered, 0)
+    for before in unordered:
+        for after in dependencies[before]:
+            if after in in_degrees:
+                in_degrees[after] += 1
+
+    queue = deque(n for n in unordered if in_degrees[n] == 0)
+    while queue:
+        before = queue.popleft()
+        order.append(before)
+        for after in dependencies[before]:
+            if after not in in_degrees:
+                continue
+
+            in_degrees[after] -= 1
+            if in_degrees[after] == 0:
+                queue.append(after)
+
+    return order

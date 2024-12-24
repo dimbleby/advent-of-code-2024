@@ -1,13 +1,9 @@
 from __future__ import annotations
 
 import itertools
-from collections import defaultdict, deque
-from typing import TYPE_CHECKING
+from collections import defaultdict
 
-from advent.utils import data_dir
-
-if TYPE_CHECKING:
-    from collections.abc import Mapping
+from advent.utils import data_dir, topological_sort
 
 type Rule = tuple[int, int]
 
@@ -33,32 +29,6 @@ def valid(rules: list[Rule], update: list[int]) -> bool:
             return False
 
     return True
-
-
-def topological_sort(
-    dependencies: Mapping[int, list[int]], update: list[int]
-) -> list[int]:
-    order = []
-
-    in_degrees = dict.fromkeys(update, 0)
-    for before in update:
-        for after in dependencies[before]:
-            if after in in_degrees:
-                in_degrees[after] += 1
-
-    queue = deque(n for n in update if in_degrees[n] == 0)
-    while queue:
-        before = queue.popleft()
-        order.append(before)
-        for after in dependencies[before]:
-            if after not in in_degrees:
-                continue
-
-            in_degrees[after] -= 1
-            if in_degrees[after] == 0:
-                queue.append(after)
-
-    return order
 
 
 def solve() -> None:
